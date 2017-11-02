@@ -19,11 +19,11 @@ class WechatController extends Controller
         $wechat = app('wechat');
         $wechat->server->setMessageHandler(function($message){
             Log::info('wechat message',[$message]);
-            $content =$message->content;
+            $content = $message->Content;
             if ($content == 1){
                 return '1';
             }else{
-                return "欢迎关注 overtrue！";
+                return "欢迎关注 小乌云！";
             }
 
         });
