@@ -21,7 +21,7 @@ class WechatController extends Controller
             Log::info('wechat message',[$message]);
             $content =$message->content;
             if ($content == 1){
-                return'1';
+                return '1';
             }else{
                 return "欢迎关注 overtrue！";
             }
