@@ -20,13 +20,25 @@ class WechatController extends Controller
         $wechat->server->setMessageHandler(function($message){
             Log::info('wechat message',[$message]);
             $content = $message->Content;
-            if ($content == 1){
-                return '1';
-            }else{
-                return "欢迎关注 小乌云！";
-            }
-
-        });
+            $userid = $message->FromUserName;
+            if (mb_strlen($content) > 30) $content = mb_substr($content, 0, 30);
+            $msgtype = $message->MsgType;
+            if ($msgtype == 'text') {
+                $data = [
+                    'key' => 'f94c347a708f4b02a1099eefa058d6d7',
+                    'info' => $content,
+                    'userid' => $userid,
+                ];
+                $response = \Request::post('http://www.tuling123.com/openapi/api', [], $data);
+                if ($response->success) {
+                    $daan =json_decode($data);
+                    Log::info('$response',[$daan]);
+                   if ($daan->code ==10000){
+                       return $daan->text;
+                   } else return '请求错误';
+                }else return '接口访问失败';
+            }else return '不支持的消息格式';
+            });
 
         Log::info('return response.');
 
