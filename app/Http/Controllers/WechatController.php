@@ -34,7 +34,7 @@ class WechatController extends Controller
                 if ($response->success) {
                     $daan =json_decode($response->body);
                     Log::info('$response',[$daan]);
-                   if ($daan->code == 10000){
+                   if ($daan->code == 100000){
                        return $daan->text;
                    } else return '请求错误';
                 }else return '接口访问失败';
