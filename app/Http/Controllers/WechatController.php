@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use EasyWeChat\Core\Http;
 use Log;
 
 class WechatController extends Controller
@@ -29,7 +30,7 @@ class WechatController extends Controller
                     'info' => $content,
                     'userid' => $userid,
                 ];
-                $response = \Request::post('http://www.tuling123.com/openapi/api', [], $data);
+                $response = Request::post('http://www.tuling123.com/openapi/api', [], $data);
                 if ($response->success) {
                     $daan =json_decode($data);
                     Log::info('$response',[$daan]);
