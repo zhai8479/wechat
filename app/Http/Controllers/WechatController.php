@@ -32,7 +32,7 @@ class WechatController extends Controller
                 ];
                 $response = \Requests::post('http://www.tuling123.com/openapi/api', [], $data);
                 if ($response->success) {
-                    $daan =json_decode($data);
+                    $daan =json_decode($response->body);
                     Log::info('$response',[$daan]);
                    if ($daan->code == 10000){
                        return $daan->text;
