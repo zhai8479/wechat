@@ -37,7 +37,7 @@ class WechatController extends Controller
                        return $daan->text;
                    } else return '请求错误';
                 }else return '接口访问失败';
-            }else return '不支持的消息格式';
+            }else return '欢迎关注小乌云';
             });
 
         Log::info('return response.');
